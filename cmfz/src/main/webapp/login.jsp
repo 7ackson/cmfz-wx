@@ -34,7 +34,7 @@
                 success: function (data) {
                     var dd = JSON.parse(data);
                     if (dd.login) {
-                        window.location.replace("${pageContext.request.contextPath}/main/main.jsp")
+                        window.location.replace("${pageContext.request.contextPath}/menu/selectAll")
                     } else {
                         alert("账号或者密码错误，请重新登陆");
                     }

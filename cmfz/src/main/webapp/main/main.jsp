@@ -1,4 +1,5 @@
 ﻿<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,21 +27,17 @@
        
     <div data-options="region:'west',title:'导航菜单',split:true" style="width:220px;">
     	<div id="aa" class="easyui-accordion" data-options="fit:true">
-            <div title="轮播图管理" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
-            </div>
-            <div title="吉祥妙音" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
-            </div>
-            <div title="甘露妙宝" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
-            </div>
-            <div title="功课记录" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
-            </div>
-            <div title="用户模块" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
-            </div>
-            <div title="上师模块" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
-            </div>
-            <div title="日志管理" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+            <div title="哈哈哈哈" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+                哈哈哈
             </div>
 
+            <c:forEach var="menu" items="${requestScope.menu}">
+                <div title="${menu.title}" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+                    <c:forEach items="${menu.list}" var="list">
+                        <a href="#">${list.title}</a>
+                    </c:forEach>
+                </div>
+            </c:forEach>
         </div>
     </div>   
     <div data-options="region:'center'">
