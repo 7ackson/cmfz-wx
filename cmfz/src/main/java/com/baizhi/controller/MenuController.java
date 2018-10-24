@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -15,9 +16,11 @@ public class MenuController {
     private MenuService menuService;
 
     @RequestMapping("/selectAll")
-    public String selectAll(Map map){
-       map.put("menu",menuService.selectAll());
-       return "forward:/main/main.jsp";
+    public @ResponseBody Map selectAll(){
+        Map map = new HashMap();
+        map.put("menu",menuService.selectAll());
+        System.out.println(map);
+        return map;
     }
 
 }

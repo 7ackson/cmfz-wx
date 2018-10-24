@@ -8,18 +8,18 @@ public class Menu {
     private int parent_id;
     private String iconCls;
     private String url;
-    private List<Menu> list;
+    private List<Menu> menuList;
 
     public Menu() {
     }
 
-    public Menu(int id, String title, int parent_id, String iconCls, String url, List<Menu> list) {
+    public Menu(int id, String title, int parent_id, String iconCls, String url, List<Menu> menuList) {
         this.id = id;
         this.title = title;
         this.parent_id = parent_id;
         this.iconCls = iconCls;
         this.url = url;
-        this.list = list;
+        this.menuList = menuList;
     }
 
     public int getId() {
@@ -62,12 +62,12 @@ public class Menu {
         this.url = url;
     }
 
-    public List<Menu> getList() {
-        return list;
+    public List<Menu> getMenuList() {
+        return menuList;
     }
 
-    public void setList(List<Menu> list) {
-        this.list = list;
+    public void setMenuList(List<Menu> menuList) {
+        this.menuList = menuList;
     }
 
     @Override
@@ -78,7 +78,7 @@ public class Menu {
                 ", parent_id=" + parent_id +
                 ", iconCls='" + iconCls + '\'' +
                 ", url='" + url + '\'' +
-                ", list=" + list +
+                ", menuList=" + menuList +
                 '}';
     }
 }
