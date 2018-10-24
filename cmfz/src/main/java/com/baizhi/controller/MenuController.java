@@ -19,7 +19,6 @@ public class MenuController {
     public @ResponseBody Map selectAll(){
         Map map = new HashMap();
         map.put("menu",menuService.selectAll());
-        System.out.println(map);
         return map;
     }
 
