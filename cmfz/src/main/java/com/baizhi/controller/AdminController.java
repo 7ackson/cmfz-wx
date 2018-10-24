@@ -21,6 +21,7 @@ public class AdminController {
     @RequestMapping("/login")
     public @ResponseBody Map login(Admin admin, String vrifyCode, HttpServletRequest httpServletRequest){
         Map map = new HashMap();
+
         String yzm = (String) httpServletRequest.getSession().getAttribute("vrifyCode");
         if(yzm.equalsIgnoreCase(vrifyCode)){
             if(adminService.login(admin) != null){
