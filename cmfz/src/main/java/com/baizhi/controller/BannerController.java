@@ -2,12 +2,19 @@ package com.baizhi.controller;
 
 import com.baizhi.entity.Banner;
 import com.baizhi.service.BannerService;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.Map;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/banner")
@@ -22,9 +29,19 @@ public class BannerController {
     }
 
     @RequestMapping("/insert")
-    public @ResponseBody boolean insert(Banner banner){
-        System.out.println(banner);
+    public @ResponseBody boolean insert(Banner banner, MultipartFile img,HttpServletRequest request){
         try {
+            String path = request.getSession().getServletContext().getRealPath("/");
+            File file = new File(path+"/upload");
+            if(!file.exists()){
+                file.mkdir();
+            }
+            String originalFilename = img.getOriginalFilename();
+            String uName = UUID.randomUUID().toString();
+            String extension = FilenameUtils.getExtension(originalFilename);
+            String newName = uName+"."+extension;
+            banner.setUrl(newName);
+            img.transferTo(new File(file,newName));
             bannerService.insert(banner);
             return true;
         } catch (Exception e) {
