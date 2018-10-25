@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	namespace:写当前mapper文件对应的dao接口的全类名
+ -->
+<mapper namespace="com.baizhi.dao.BannerDao">
+
+	<insert id="insert">
+		insert into banner(name,url,status,createdate,description) values(#{name},#{url},0,CURDATE(),#{description})
+	</insert>
+
+	<delete id="delete">
+		delete from banner where id in
+		<foreach collection="array" open="(" separator="," close=")" item="ids">
+			#{ids}
+		</foreach>
+	</delete>
+
+	<update id="update">
+		update banner set status = #{status} where id = #{id}
+	</update>
+
+	<select id="selectByPage" resultType="Banner">
+		select * from banner limit #{start},#{end}
+	</select>
+
+	<select id="selectCount" resultType="int">
+		select Count(*) from banner
+	</select>
+
+</mapper>

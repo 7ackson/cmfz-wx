@@ -3,8 +3,10 @@ package com.baizhi.test;
 
 import com.baizhi.SpringbootMybatisApplication;
 import com.baizhi.entity.Admin;
+import com.baizhi.entity.Banner;
 import com.baizhi.entity.Menu;
 import com.baizhi.service.AdminService;
+import com.baizhi.service.BannerService;
 import com.baizhi.service.MenuService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,16 +20,14 @@ import java.util.Map;
 public class AdminTest extends AdminExtends {
 
     @Autowired
-    private MenuService menuService;
+    private BannerService bannerService;
 
     @Test
     public void selectTest(){
-        List<Menu> list = menuService.selectAll();
-        for (Menu menu : list) {
-            System.out.println(menu);
-            for (Menu menu1 : menu.getList()) {
-                System.out.println(menu1);
-            }
+        Map map = bannerService.selectByPage(1,5);
+        List<Banner> list = (List<Banner>) map.get("rows");
+        for (Banner banner : list) {
+            System.out.println(banner);
         }
     }
 
