@@ -17,7 +17,6 @@ public class AlbumController {
 
     @RequestMapping("/selectAll")
     public @ResponseBody List<Album> selectAll(){
-        System.out.println(albumService.selectAll());
         return albumService.selectAll();
     }
 
