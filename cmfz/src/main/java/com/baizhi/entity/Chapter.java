@@ -6,18 +6,20 @@ public class Chapter {
     private int id;
     private String name;
     private String url;
-    private double size;
+    private String size;
     private String duration;
+    private Album album;
 
     public Chapter() {
     }
 
-    public Chapter(int id, String name, String url, double size, String duration) {
+    public Chapter(int id, String name, String url, String size, String duration,Album album) {
         this.id = id;
         this.name = name;
         this.url = url;
         this.size = size;
         this.duration = duration;
+        this.album = album;
     }
 
     public int getId() {
@@ -44,11 +46,11 @@ public class Chapter {
         this.url = url;
     }
 
-    public double getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(double size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
@@ -60,14 +62,23 @@ public class Chapter {
         this.duration = duration;
     }
 
+    public Album getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
+    }
+
     @Override
     public String toString() {
         return "Chapter{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
-                ", size=" + size +
+                ", size='" + size + '\'' +
                 ", duration='" + duration + '\'' +
+                ", album=" + album +
                 '}';
     }
 }

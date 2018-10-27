@@ -7,6 +7,7 @@
                 url:'${pageContext.request.contextPath}/banner/selectByPage',
                 pagination: true ,
                 updateUrl: "${pageContext.request.contextPath}/banner/update",
+                destroyUrl:'${pageContext.request.contextPath}/banner/delete',
                 columns:[[
                     {field:'id',title:'编号',width:100,hidden:true},
                     {field:'name',title:'名字',width:100},
@@ -40,33 +41,8 @@
                 },'-',{
                     iconCls: 'icon-cancel',
                     text: "删除",
-                    handler: function(){
-                        var id = $("#dg").datagrid("getSelections");
-                        if(id.length != 0){
-                            $.messager.confirm('确认对话框', '您想要删除该数据吗？', function(r){
-                                if (r){
-                                    var ids = new Array(id.length);
-                                    for(var i = 0;i<ids.length;i++){
-                                        ids[i]=id[i].id;
-                                    }
-                                    $.ajax({
-                                        url:"${pageContext.request.contextPath}/banner/delete",
-                                        data:{"ids":ids},
-                                        traditional:true,
-                                        async:false,
-                                        success:function(data){
-                                            if(data){
-                                                alert("删除成功")
-                                                $("#dg").datagrid("reload");
-                                            }else{
-                                                alert("删除失败")
-                                                $("#dg").datagrid("reload");
-                                            }
-                                        }
-                                    })
-                                }
-                            });
-                        }
+                    handler: function() {
+                        $("#dg").edatagrid("destroyRow");
                     }
                 },'-',{
                     iconCls: 'icon-save',

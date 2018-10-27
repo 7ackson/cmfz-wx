@@ -30,8 +30,8 @@ public class BannerServiceImpl implements BannerService {
     }
 
     @Override
-    public void delete(int[] ids) {
-        bannerDao.delete(ids);
+    public void delete(int id) {
+        bannerDao.delete(id);
     }
 
     @Override

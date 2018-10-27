@@ -10,4 +10,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectOne" resultType="Chapter">
 		select * from chapter where id = #{id}
 	</select>
+	
+	<insert id="chapterInsert">
+		insert into chapter(title,url,size,duration,albumid)
+		values(#{name},#{url},#{size},#{duration},#{album.id})
+	</insert>
 </mapper>

@@ -17,6 +17,11 @@ public class AlbumServiceImpl implements AlbumService{
     private AlbumDao albumDao;
 
     @Override
+    public void insert(Album album) {
+        albumDao.insert(album);
+    }
+
+    @Override
     public List<Album> selectAll() {
         return albumDao.selectAll();
     }

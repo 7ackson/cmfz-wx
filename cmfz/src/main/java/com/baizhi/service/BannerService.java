@@ -7,7 +7,7 @@ import java.util.Map;
 public interface BannerService {
     public void insert(Banner banner);
 
-    public void delete(int[] ids);
+    public void delete(int id);
 
     public void update(Banner banner);
 

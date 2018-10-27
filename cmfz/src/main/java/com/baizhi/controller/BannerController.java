@@ -56,9 +56,9 @@ public class BannerController {
     }
 
     @RequestMapping("delete")
-    public @ResponseBody boolean delete(int[] ids){
+    public @ResponseBody boolean delete(int id){
         try {
-            bannerService.delete(ids);
+            bannerService.delete(id);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

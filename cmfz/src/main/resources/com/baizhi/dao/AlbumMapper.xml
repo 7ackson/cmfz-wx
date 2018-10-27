@@ -26,6 +26,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</collection>
 	</resultMap>
 
+	<insert id="insert">
+		insert into album VALUES(#{id},#{name},#{coverImg},(select count(*) from chapter t1 LEFT JOIN album t2 on t1.albumid = t2.id
+		where t1.albumid = #{id}),#{score},#{author},#{broadCast},
+		#{brief},CURDATE())
+	</insert>
+
 	<select id="selectAll" resultMap="albumMap">
 		select t1.*,t2.title name,t2.id id1,t2.title name,t2.url url,t2.size size,t2.duration duration,t2.albumid albumid1 from album t1
 		LEFT JOIN chapter t2

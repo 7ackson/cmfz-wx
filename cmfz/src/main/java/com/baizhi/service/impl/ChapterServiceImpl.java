@@ -13,6 +13,13 @@ public class ChapterServiceImpl implements ChapterService {
     @Autowired
     private ChapterDao chapterDao;
 
+
+    @Override
+    public void chapterInsert(Chapter chapter) {
+        System.out.println(chapter);
+        chapterDao.chapterInsert(chapter);
+    }
+
     @Override
     public Chapter selectOne(int id) {
         return chapterDao.selectOne(id);

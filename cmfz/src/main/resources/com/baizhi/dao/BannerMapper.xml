@@ -13,10 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<delete id="delete">
-		delete from banner where id in
-		<foreach collection="array" open="(" separator="," close=")" item="ids">
-			#{ids}
-		</foreach>
+		delete from banner where id = #{id}
 	</delete>
 
 	<update id="update">
