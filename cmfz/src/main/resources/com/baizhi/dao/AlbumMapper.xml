@@ -37,4 +37,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LEFT JOIN chapter t2
 		on t1.id = t2.albumid
 	</select>
+
+	<select id="selectOne" resultMap="albumMap">
+		select * from album where id = #{uuid}
+	</select>
 </mapper>

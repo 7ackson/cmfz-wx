@@ -10,6 +10,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectOne" resultType="Chapter">
 		select * from chapter where id = #{id}
 	</select>
+
+	<select id="selectTwo" resultType="Chapter">
+		select t1.* from chapter t1 INNER JOIN album t2 on t2.id = t1.albumid
+		where t1.albumid = #{uuid};
+	</select>
 	
 	<insert id="chapterInsert">
 		insert into chapter(title,url,size,duration,albumid)

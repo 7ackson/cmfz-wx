@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	namespace:写当前mapper文件对应的dao接口的全类名
+ -->
+<mapper namespace="com.baizhi.dao.UserDao">
+	<select id="selectAll" resultType="User">
+		select * from user
+	</select>
+
+	<select id="selectCountThree" resultType="int">
+		select count(*) from user where DATEDIFF(curdate(),regDate) <![CDATA[<]]> 21 and DATEDIFF(curdate(),regDate) >= 14
+	</select>
+
+	<select id="selectCountTwo" resultType="int">
+		select count(*) from user where DATEDIFF(curdate(),regDate) <![CDATA[<=]]> 14 and DATEDIFF(curdate(),regDate) >= 7
+	</select>
+
+	<select id="selectCountOne" resultType="int">
+		select count(*) from user where DATEDIFF(curdate(),regDate) <![CDATA[<=]]> 7 and DATEDIFF(curdate(),regDate) >= 1
+	</select>
+
+	<select id="selectMan" resultType="Map">
+		select province name,Count(*) value from user where sex = 0 GROUP BY province
+	</select>
+
+	<select id="selectWoman" resultType="Map">
+		select province name,Count(*) value from user where sex = 1 GROUP BY province
+	</select>
+
+	<select id="selectOne" resultType="Map">
+		select * from user where phoneNum = #{phoneNum} and password = #{password}
+	</select>
+
+	<select id="selectRandom" resultType="Map">
+		SELECT * FROM user
+		WHERE id >= (SELECT floor( RAND() * ((SELECT MAX(id) FROM user)-(SELECT MIN(id) FROM user))
+		+ (SELECT MIN(id) FROM user))) and id != #{id}
+		ORDER BY id LIMIT 2
+	</select>
+
+</mapper>
