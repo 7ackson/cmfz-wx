@@ -42,4 +42,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY id LIMIT 2
 	</select>
 
+	<select id="selectPhone" resultType="User">
+		select * from user where phoneNum = #{phoneNum}
+	</select>
+
+	<insert id="insert">
+		insert into USER(phoneNum,password) VALUES (#{phoneNum},#{password})
+	</insert>
+
+
+
 </mapper>

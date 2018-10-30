@@ -58,4 +58,19 @@ public class UserServiceImpl implements UserService {
     public List<Map<String,Object>> selectRandom(int id) {
         return userDao.selectRandom(id);
     }
+
+    @Override
+    public Map insert(User user) {
+        Map map = new HashMap();
+        System.out.println("user:"+user);
+        if(userDao.selectPhone(user) != null){
+            map.put("error","-200");
+            map.put("erroe_msg","该手机号已经存在");
+        }else{
+            map.put("password",user.getPassword());
+            map.put("phone",user.getPhoneNum());
+            userDao.insert(user);
+        }
+        return map;
+    }
 }

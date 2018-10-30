@@ -18,4 +18,6 @@ public interface UserService {
 
     public List<Map<String,Object>> selectRandom(int id);
 
+    public Map insert(User user);
+
 }

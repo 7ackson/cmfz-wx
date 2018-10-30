@@ -21,6 +21,10 @@ public interface UserDao {
 
     public Map selectOne(User u);
 
+    public User selectPhone(User u);
+
+    public void insert(User u);
+
     public List<Map<String,Object>> selectRandom(@Param("id") int id);
 
 }

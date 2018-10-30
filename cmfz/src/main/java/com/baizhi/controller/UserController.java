@@ -41,6 +41,11 @@ public class UserController {
         return userService.selectWoman();
     }
 
+    @RequestMapping("/insert")
+    public @ResponseBody Map insert(User u){
+        return userService.insert(u);
+    }
+
     @RequestMapping("/login")
     public @ResponseBody Map selectOne(User u){
         return userService.selectOne(u);
