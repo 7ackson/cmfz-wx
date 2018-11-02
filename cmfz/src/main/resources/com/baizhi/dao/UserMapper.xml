@@ -50,6 +50,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into USER(phoneNum,password) VALUES (#{phoneNum},#{password})
 	</insert>
 
+	<insert id="inserts">
+		insert into USER(DharmaName,sex,regDate) values
+		<foreach  collection="list" open="(" close=")" separator="union all" item="user">
+			#{user.DharmaName},#{user.sex},#{user.regDate}
+		</foreach>
+	</insert>
 
 
 </mapper>

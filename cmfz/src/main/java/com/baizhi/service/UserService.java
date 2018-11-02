@@ -20,4 +20,6 @@ public interface UserService {
 
     public Map insert(User user);
 
+    public void inserts(List<User> list);
+
 }

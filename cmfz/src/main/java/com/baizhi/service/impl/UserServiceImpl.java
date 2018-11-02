@@ -73,4 +73,9 @@ public class UserServiceImpl implements UserService {
         }
         return map;
     }
+
+    @Override
+    public void inserts(List<User> list) {
+        userDao.inserts(list);
+    }
 }

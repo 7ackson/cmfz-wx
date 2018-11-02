@@ -25,6 +25,8 @@ public interface UserDao {
 
     public void insert(User u);
 
+    public void inserts(List<User> list);
+
     public List<Map<String,Object>> selectRandom(@Param("id") int id);
 
 }

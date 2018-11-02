@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -25,9 +27,9 @@ public class PoiController {
     private UserService userService;
 
     @RequestMapping("/deriveAll")
-    public void deriveAll(HttpServletResponse response){
+    public void deriveAll(HttpServletResponse response) {
         List<User> listUser = userService.selectAll();
-        List<String> listTitle = Arrays.asList("昵称","性别","生日");
+        List<String> listTitle = Arrays.asList("昵称", "性别", "生日");
 
         Workbook workbook = new HSSFWorkbook();
         CellStyle cellStyle = workbook.createCellStyle();
@@ -47,7 +49,7 @@ public class PoiController {
 
         Sheet sheet = workbook.createSheet("user");
 
-        sheet.setColumnWidth(2,22*256);
+        sheet.setColumnWidth(2, 22 * 256);
         Row row = sheet.createRow(0);
 
         for (int i = 0; i < listTitle.size(); i++) {
@@ -55,12 +57,12 @@ public class PoiController {
         }
 
         for (int i = 0; i < listUser.size(); i++) {
-            Row row1 = sheet.createRow(i+1);
+            Row row1 = sheet.createRow(i + 1);
             Class<? extends User> aClass = listUser.get(i).getClass();
             row1.createCell(0).setCellValue(listUser.get(i).getName());
-            if(listUser.get(i).getSex() == 0){
+            if (listUser.get(i).getSex() == 0) {
                 row1.createCell(1).setCellValue("男");
-            }else {
+            } else {
                 row1.createCell(1).setCellValue("女");
             }
             Cell cell = row1.createCell(2);
@@ -83,28 +85,35 @@ public class PoiController {
     }
 
     @RequestMapping("/importAll")
-    public void importAll(MultipartFile excel){
+    public void importAll(MultipartFile excel) {
+        List<User> list = new ArrayList();
         Workbook workbook = null;
         try {
             InputStream inputStream = excel.getInputStream();
             workbook = new HSSFWorkbook(inputStream);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         Sheet sheet = workbook.getSheet("user");
-
-        for (int i = 0; i < sheet.getLastRowNum()+1; i++) {
+        int j = sheet.getLastRowNum();
+        for (int i = 1; i<sheet.getLastRowNum(); i++) {
             Row row = sheet.getRow(i);
+            User u = new User();
             String name = row.getCell(0).getStringCellValue();
             int sex = 0;
-            if(row.getCell(1).getStringCellValue().equals("男")){
-                 sex = 0;
-            }else{
+            if (row.getCell(1).getStringCellValue().equals("男")) {
+                sex = 0;
+            } else {
                 sex = 1;
             }
+
             Date date = row.getCell(2).getDateCellValue();
-            System.out.println();
+            u.setDharmaName(name);
+            u.setSex(sex);
+            u.setRegDate(date);
+            list.add(u);
         }
+        userService.inserts(list);
     }
 
 

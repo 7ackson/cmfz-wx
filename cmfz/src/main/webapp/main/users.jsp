@@ -55,7 +55,10 @@
             },'-',{
                 iconCls: 'icon-cut',
                 text: "全部导入",
-                handler: function(){}
+                handler: function(){
+                    $("#drinsert").dialog("open")
+
+                }
             },'-',{
                 iconCls: 'icon-cut',
                 text: "自定义导出",
@@ -91,4 +94,36 @@ data:[{
             <a id="userbutton" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">确定</a>
         </form>
     </div>
+</div>
+
+<div id="drinsert" class="easyui-dialog" title="添加专辑" style="width:400px;height:200px;"
+     data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true,buttons:[{
+				text:'保存',
+				handler:function(){
+                    $('#drinsertform').form('submit',{
+                url:'${pageContext.request.contextPath}/poi/importAll',
+                success:function(data){
+                    if(data){
+                        alert('添加成功');
+                        $('#drinsert').dialog('close');
+                        $('#userSelectAll').datagrid('reload');
+                    }else{
+                        alert('添加失败');
+                        $('#userSelectAll').datagrid('close');
+                    }
+                }
+            })
+				}
+			},{
+				text:'关闭',
+				handler:function(){
+				 $('#drinsert').dialog('close')
+				}
+			}]">
+    <form id="drinsertform" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="excel">导入:</label>
+            <input id="excel" class="easyui-filebox" name="excel" style="width:300px">
+        </div>
+    </form>
 </div>
